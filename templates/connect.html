@@ -1,0 +1,55 @@
+{% include 'header.html' %}
+
+    <div class="whyusl">
+        <p><</p>
+        <div class="col-8 whyus">
+            <h2>Why Us?</h2>
+            <ul>
+                <li>Because we can provide jobs for those people who all are freshers and other people who do not have j
+                    obs and are not freshers</li>
+                <li>Because we want to increase the number of Entrepreneurs in India to develop India with very fast rate.
+                    For this we are giving platform to show your ideas. If your ideas are nice we will sponsor you to
+                    start your own company and become an Entrepreneur</li>
+                <li>To become an exclusive platform to showcase students' literature, academic skills. Also to promote
+                    cultural, social and educational exchanges across schools and colleges in India</li>
+            </ul>
+  </div>
+    </div>
+
+    <div class="signupl">
+        <p><</p>
+        <div class="col-8 signup">
+           <h2>Come join Us!</h2>
+            <form id="registerform" name="form" method="post" action="{% url 'register' %}?next={{request.path}}">{% csrf_token %}
+                <input type="text" placeholder="Name" name="name" id="name"/><br>
+                <input type="text" placeholder="City" name="city" id="city"/><br>
+                <input type="text" placeholder="State" name="state" id="state"/><br>
+                <input type="text" placeholder="E-Mail" name="email" id="email"/><br>
+                <input type="password" placeholder="Password" name="password" id="pass"/><br>
+                <input type="text" placeholder="Phone Number" name="phno" id="phno"/><br>
+                <input type="text" placeholder="College (Please Provide complete name)" name="college"/><br>
+                <input type="text" placeholder="school (Please Provide complete name)" name="school"/><br>
+                <input type="text" placeholder="age" name="age"/><br>
+                <input type="text" placeholder="sex" name="sex"/><br>
+                <input type="button" value="Submit" class="but" id="register"/>
+            </form>
+        </div>
+    </div>
+
+    <div class="signinl">
+        <p><</p>
+        <div class="col-8 signin">
+            <h2>Already With Us?</h2>
+            <form action="{% url 'login' %}?next={{request.path}}" method="POST">{% csrf_token %}
+                            <input type="text" placeholder="Email" name="email"/><br>
+                            <input type="password" placeholder="Password" name="password"/><br>
+                            <input class="but" type="submit" value="Log In"><input class="but" type="reset" value="Cancel">
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+
+</html>

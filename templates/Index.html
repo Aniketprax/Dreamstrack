@@ -1,0 +1,24 @@
+{% load staticfiles %}
+{% include 'header.html' %}
+    <div class="col-12 col-m-12 container-other">
+        <div class="col-12 home1">
+            <h1>A PATH FOR BETTER <br>TOMORROW</h1>
+            <h3>Know Us Better.</h3>
+            <div id="chevron"></div>
+        </div>
+<hr>
+        <div class="col-12 home2" id="home2">
+            <h1 style="text-decoration: underline; font-family: 'Times New Roman'; font-size: 1.5em; font-weight: normal">
+                OUR SERVICES</h1>
+            <h4 style="font-family: 'Times New Roman'">A PLATFORM FOR BETTER TOMORROW</h4>
+            <br>
+            <a href="{% url 'dreamsmain' %}" ><div class="col-4" style="background: rgba(74, 189, 172,.8)"><p>Dream Group</p></div></a>
+            <a href="{% url 'dreamsjob' %}" ><div class="col-4" style="background: rgba(247, 183, 51,.8)"><p>Dreams Job</p></div></a>
+            <div class="col-4" style="background: rgba(52, 152, 219,.8)"><p>Smart Class</p></div>
+            <div class="col-4" style="background: rgba(46, 204, 113, .8)"><p>Events</p></div>
+            <div class="col-4" style="background: rgba(247, 183, 51,.8)"><p>Videos</p></div>
+            <div class="col-4" style="background: rgba(74, 189, 172,.8)"><p>StartUp's Product</p></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{% if event %}
+        <h2>Your Order</h2>
+{% load render_table from django_tables2 %}
+{% render_table event %}
+        {% else %}
+        <h2>No Event yet</h2>
+    {% endif %}

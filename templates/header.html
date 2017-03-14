@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Strack</title>
+    {% load staticfiles %}
+<link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+<div class="col-12 header">
+    <div style="margin: auto;max-width: 1360px;">
+    <div class="col-4 logo">
+        <h1><a href="{% url 'home' %}" >DreamsTrack<samp class="dot">.</samp></a></h1>
+    </div>
+
+    <div class="col-7 list">
+        <ul>
+            {% if name != "" %}
+                <li><a href="{% url 'logout' %}">{{ name }}</a> </li>
+            {% else %}
+                <li><a href="{% url 'connect' %}" >Log In/Sign In</a></li>
+            {% endif %}
+            <li><a href="">About Us</a></li>
+            <li id="ser"><a href="{% url 'home' %}#home2">Services</a></li>
+            <li><a href="" >Contact</a></li>
+        </ul>
+    </div>
+        </div>
+</div>

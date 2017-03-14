@@ -1,0 +1,10 @@
+{% include 'header.html' %}
+
+<div class="col-12 col-m-12 container-other">
+        <h1>Welcome {{ name }}</h1><br>
+        <h3>Sign up complete<br>Redirecting you back...<br>Give us a moment</h3>
+    <meta http-equiv="REFRESH" content="2;url={% url 'home' %}">
+    </div>
+
+</body>
+</html>

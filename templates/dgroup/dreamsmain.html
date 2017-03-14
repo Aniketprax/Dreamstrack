@@ -1,0 +1,66 @@
+{% include 'header.html' %}
+{% if name != "" %}
+    <div class="col-12 col-m-12 container-other">
+
+        <div class="col-6 dg-container-left">
+            <a href="{% url 'mycollege' %}" ><div class="col-6 dg-college">
+                <p style="text-align: start;opacity: 0">My</p><br><p style="text-align: center; font-size: 2em">College</p><br><p style="text-align: right;opacity: 0">Group</p>
+            </div></a>
+
+            <a href="{% url 'myschool' %}" ><div class="col-6 dg-school">
+                <p style="text-align: start;opacity: 0;">My</p><br><p style="text-align: center; font-size: 2em">School</p><br><p style="text-align: right;opacity: 0">Group</p>
+            </div></a>
+
+            <div class="col-12 dg-events-search">
+                <h2>Find Events</h2>
+                <form method="get" action="" id="events-search">
+                    <select name="state">
+                        <option>State</option>
+                        <option value="Karnataka">Karnataka</option>
+                    </select>
+                    <input type="button" value="Submit" class="but" id="register">
+                </form>
+            </div>
+
+            <div class="col-12 results">
+                <h2>Results</h2>
+                <hr>
+                <div id="results"></div>
+
+            </div>
+
+        </div>
+
+        <div class="col-6 dg-container-right">
+            <div class="col-12 eventpic">
+                <h2>Event Photo Gallery</h2>
+            </div>
+            <div class="col-12 curevents">
+                <h2>All Ongoing Events</h2>
+            </div>
+        </div>
+
+    </div>
+    {% else %}
+    <h1>PLEASE SIGN IN TO ENTER!!</h1>
+{% endif %}
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("#register").click(function(){
+        $.ajax({
+            url: "events-result/",
+            type:"GET",
+            async: true,
+            data:  $("#events-search").serialize(),
+
+            success: function(result){
+                $("#results").html(result);
+             }});
+    });
+});
+</script>
+</html>

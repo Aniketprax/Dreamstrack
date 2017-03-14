@@ -1,0 +1,139 @@
+{% include 'header.html' %}
+{% load static %}
+{% if name != "" %}
+<div class="col-12 container-other">
+
+    <div class="col-12 college-cover" style='background-image: url("{% static college.cover %}")'>
+        <h1 style="z-index: 5">{{ college }}</h1>
+</div>
+
+<div class="col-12 college-list">
+        <ul>
+            <li id="post">Posts</li>
+            <li id="members">Members</li>
+            <li id="events">Events</li>
+            <li id="photos">Photos</li>
+            <li id="videos">Videos</li>
+        </ul>
+    </div>
+<div style="margin: auto;max-width: 800px;">
+    <div class="col-12 post">
+        <ul>
+            <li id="post-list11"><i class="material-icons">chrome_reader_mode</i>Write Post</li>
+            <li id="post-list12"><i class="material-icons">chrome_reader_mode</i>Add Photos</li>
+            <li id="post-list13"><i class="material-icons">local_movies</i>Videos</li>
+        </ul>
+
+        <div class="col-12 posting">
+            <li class="col-12 post-list empty" style="display: none"></li>
+
+            <li class="col-12 post-list" id="post-list1">
+                <form action="" method="get" id="writepost">
+                    <textarea name="content" rows="5" cols="20">Write Here!</textarea>
+                    {% if col == 1 %}
+                        <input type="text" value="1" name="cars" hidden>
+                    {% else %}
+                        <input type="text" value="2" name="cars" hidden>
+                    {% endif %}
+                    <input type="button" class="but" value="Post" id="writepostb"/>
+                </form>
+            </li>
+
+            <li class="col-12 post-list" id="post-list2" style="display: none">
+                <form action="{% url 'uploadpicture' %}" method="post" enctype="multipart/form-data" id="post-image">
+                    {% csrf_token %}
+                         <input type="text" name="content" required placeholder="Caption">
+                        {% if col == 1 %}
+                            <input type="text" value="1" name="cars" hidden>
+                        {% else %}
+                            <input type="text" value="2" name="cars" hidden>
+                        {% endif %}
+                         <input id="id_docfile" name="image" type="file" required />
+                        <input type="submit" class="but" value="Post" id="writepostb"/>
+                    </form>
+            </li>
+
+        <li class="col-12 post-list" id="post-list3" style="display: none">
+                <form action="{% url 'uploadvideo' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                         <input type="text" name="content" required placeholder="Caption">
+                         <input type="text" name="video" placeholder="Video Link Here"/>
+                        {% if col == 1 %}
+                            <input type="text" value="1" name="cars" hidden>
+                        {% else %}
+                            <input type="text" value="2" name="cars" hidden>
+                        {% endif %}
+                        <input type="submit" class="but" value="Post"/>
+                    </form>
+            </li>
+
+        <h2>Recent Posts</h2>
+        {% for each in posts %}
+            <li class="col-12 post-list"><h3>{{ each.content }}</h3>
+                {% if each.image %}
+                    <a href="/media/{{ each.image }}" ><img class="post-image-post" src="/media/{{ each.image }}" width="100%" id="post-image"></a>
+                {% endif %}
+
+                {% if each.video %}
+                    <iframe src="{{ each.video }}" frameborder="0" allowfullscreen></iframe>
+                </li>
+            {% endif %}
+                <p style="float: right">{{ each.date }}<br>{{ each.userName }}</p>
+            </li>
+        {% endfor %}
+    </div>
+    </div>
+
+
+
+    <div class="col-12 members">
+        <h2>Members</h2>
+        {% for each in user %}
+        <p>{{ each.name }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="col-12 events">
+        <h2>Events</h2>
+        {% for each in events %}
+            <h3>{{ each.name }}</h3>
+        <table>
+            <tr><td>STARTS</td><td>{{ each.startdate }}</td></tr>
+            <tr><td>ACTIVE</td><td>{{ each.active }}</td></tr>
+           <tr><td> ENDS</td><td>{{ each.enddate }}</td></tr></table>
+        {% endfor %}
+    </div>
+
+    <div class="col-12 photos">
+        <h2>Photos</h2>
+           {% for each in posts %}
+            {% if each.image %}
+            <li class="col-12 post-list"><h3>{{ each.content }}</h3>
+                    <a href="/media/{{ each.image }}" ><img class="post-image-post" src="/media/{{ each.image }}" width="100%" id="post-image"></a>
+                <p style="float: right">{{ each.date }}<br>{{ each.userName }}</p>
+            </li>
+               {% endif %}
+        {% endfor %}
+    </div>
+
+
+    <div class="col-12 videos">
+            <h2>Videos</h2>
+            {% for each in posts %}
+            {% if each.video %}
+                <li class="col-12 post-list"><h3>{{ each.content }}</h3>
+                    <iframe src="{{ each.video }}" frameborder="0" allowfullscreen></iframe>
+                    <p style="float: right">{{ each.date }}<br>{{ each.userName }}</p>
+                </li>
+            {% endif %}
+            {% endfor %}
+    </div>
+</div>
+
+</div>
+{% else %}
+    <h1>PLEASE SIGN IN TO ENTER!!</h1>
+{% endif %}
+
+</body>
+</html>
